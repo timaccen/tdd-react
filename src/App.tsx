@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useAnagrams } from "./useAnagrams";
 
 function App() {
+  const [displayOutput, setDisplayMessage] = React.useState(false);
+  const [input, setOutput] = React.useState("");
+  const [anagram, updateAnagream] = useAnagrams("");
+
+  const update = () => {
+    console.log('old value', anagram);
+    updateAnagream(input);
+    console.log('new value', anagram);
+    setDisplayMessage(true);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <label htmlFor="name" className="item padding">
+        Enter text
+      </label>
+      <input
+        id="name"
+        type="text"
+        className="padding"
+        onChange={(event) => setOutput(event.currentTarget.value)}
+      />
+      <button onClick={() => update()} className="padding">
+        Submit
+      </button>
+      {displayOutput && <p className="item">{input}</p>}
+      {displayOutput && <p className="item">{anagram}</p>}
     </div>
   );
 }
-
 export default App;
