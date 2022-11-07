@@ -5,11 +5,11 @@ import { useAnagrams } from "./useAnagrams";
 function App() {
   const [displayOutput, setDisplayMessage] = React.useState(false);
   const [input, setOutput] = React.useState("");
-  const [anagram, updateAnagream] = useAnagrams("");
+  const [anagram, updateAnagram] = useAnagrams("");
 
   const update = () => {
     console.log('old value', anagram);
-    updateAnagream(input);
+    updateAnagram(input);
     console.log('new value', anagram);
     setDisplayMessage(true);
   }

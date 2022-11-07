@@ -3,7 +3,7 @@ import { useState } from "react";
 export function useAnagrams(input: any) {
   const [anagram, setState] = useState(input);
 
-  const updateAnagream = (input: string) => {
+  const updateAnagram = (input: string) => {
     const newVal = input .split("")
     .map((character: string, index: number) => {
       const head = input.slice(0, index);
@@ -22,5 +22,5 @@ export function useAnagrams(input: any) {
     setState(newVal);
   }
 
-  return [anagram, updateAnagream ];
+  return [anagram, updateAnagram ];
 }
