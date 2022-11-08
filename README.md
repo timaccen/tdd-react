@@ -2,10 +2,15 @@
 
 TDD with React App.
 
-In the first iteration, the anagram challenge initial steps are fleshed out.
+## Workflow
 
-# TDD Notes
+```shell
+npm start
+npm test
+npm run build
+```
 
+## TDD Notes
 
 ## Jest & the testing library
 
