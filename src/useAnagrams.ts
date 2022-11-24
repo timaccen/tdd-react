@@ -3,19 +3,22 @@ import { useState } from "react";
 let wordStore: string[] = [];
 
 export function useAnagrams(input: any) {
-  const [anagram, setState] = useState(input);
+  const [anagram, setAnagram] = useState(input);
   const updateAnagram = (word: string) => {
     const letters = word.split("");
   letters.forEach((letter) => {
     const dwindlingSupplyOfLetters = removeOneLetter(letters, letter);
+    console.log(`letter: ${letter}`)
+    console.log(`dwindlingSupplyOfLetters: ${dwindlingSupplyOfLetters}`)
     chooseAndPass(letter, dwindlingSupplyOfLetters);
   });
-    setState(wordStore.join(" "));
+    setAnagram(wordStore.join(" "));
   }
   return [anagram, updateAnagram];
 }
 
 function chooseAndPass(wordString: string, remainingLetters: any) {
+  console.log(`remainingLetters: ${remainingLetters}`)
   if (remainingLetters.length === 0) {
     addWordToWordstore(wordString);
   } else {
@@ -30,10 +33,16 @@ function chooseAndPass(wordString: string, remainingLetters: any) {
   }
 }
 
-function removeOneLetter(remainingLetters: any, letter: any) {
+/**
+ * 
+ * @param remainingLetters string array of remaining letters
+ * @param letter 
+ * @returns Boolean
+ */
+function removeOneLetter(remainingLetters: string[], letter: any) {
   let removed = false;
-  return remainingLetters.filter((currentItem: any) => {
-    if (currentItem === letter && !removed) {
+  return remainingLetters.filter((currentLetter: any) => {
+    if (currentLetter === letter && !removed) {
       removed = true;
       return false;
     } else {
